@@ -35,7 +35,7 @@ const StoragePage = () => {
           setTimeout(() => navigate("/login"), 2000);
           return;
       }
-      const { data } = await axios.get('http://localhost:5001/api/admin/storage-usage', config);
+      const { data } = await axios.get('https://messagemaster-api-new.onrender.com/api/admin/storage-usage', config);
       setStorageData(data);
     } catch (err) {
       // ✅ FIX: Add specific error handling for authentication issues
@@ -73,7 +73,7 @@ const StoragePage = () => {
         setSuccess('');
         try {
             const config = getAuthHeaders();
-            const { data } = await axios.delete('http://localhost:5001/api/data/cleanup', {
+            const { data } = await axios.delete('https://messagemaster-api-new.onrender.com/api/data/cleanup', {
                 headers: config.headers,
                 data: cleanupForm 
             });

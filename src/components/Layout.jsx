@@ -29,7 +29,7 @@ const Layout = () => {
         try {
             const config = getAuthHeaders();
             if (config.headers) {
-                const { data } = await axios.get('http://localhost:5001/api/whitelabel/my-branding', config);
+                const { data } = await axios.get('https://messagemaster-api-new.onrender.com/api/whitelabel/my-branding', config);
                 setBranding(data);
             }
         } catch (error) {
@@ -105,7 +105,7 @@ const Layout = () => {
                 <div className="mb-4" style={{ height: '50px', backgroundColor: '#3a3f44', borderRadius: '5px' }}></div>
             ) : branding.companyLogo ? (
                 <img 
-                    src={`http://localhost:5001${branding.companyLogo}`} 
+                    src={`https://messagemaster-api-new.onrender.com${branding.companyLogo}`} 
                     alt={branding.companyName} 
                     className="mb-4" 
                     style={{ maxHeight: '50px', width: 'auto' }} 
