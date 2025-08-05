@@ -1,0 +1,94 @@
+[
+  {
+    "state": "Andhra Pradesh",
+    "cities": ["Visakhapatnam", "Vijayawada", "Guntur", "Tirupati"]
+  },
+  {
+    "state": "Arunachal Pradesh",
+    "cities": ["Itanagar", "Tawang", "Ziro"]
+  },
+  {
+    "state": "Assam",
+    "cities": ["Guwahati", "Silchar", "Dibrugarh"]
+  },
+  {
+    "state": "Bihar",
+    "cities": ["Patna", "Gaya", "Muzaffarpur"]
+  },
+  {
+    "state": "Chhattisgarh",
+    "cities": ["Raipur", "Bilaspur", "Durg"]
+  },
+  {
+    "state": "Delhi",
+    "cities": ["New Delhi", "Dwarka", "Rohini"]
+  },
+  {
+    "state": "Goa",
+    "cities": ["Panaji", "Margao", "Vasco da Gama"]
+  },
+  {
+    "state": "Gujarat",
+    "cities": ["Ahmedabad", "Surat", "Vadodara", "Rajkot"]
+  },
+  {
+    "state": "Haryana",
+    "cities": ["Gurugram", "Faridabad", "Panipat"]
+  },
+  {
+    "state": "Himachal Pradesh",
+    "cities": ["Shimla", "Manali", "Dharamshala"]
+  },
+  {
+    "state": "Jharkhand",
+    "cities": ["Ranchi", "Jamshedpur", "Dhanbad"]
+  },
+  {
+    "state": "Karnataka",
+    "cities": ["Bengaluru", "Mysuru", "Mangaluru"]
+  },
+  {
+    "state": "Kerala",
+    "cities": ["Thiruvananthapuram", "Kochi", "Kozhikode"]
+  },
+  {
+    "state": "Madhya Pradesh",
+    "cities": ["Indore", "Bhopal", "Jabalpur", "Gwalior"]
+  },
+  {
+    "state": "Maharashtra",
+    "cities": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"]
+  },
+  {
+    "state": "Odisha",
+    "cities": ["Bhubaneswar", "Cuttack", "Rourkela"]
+  },
+  {
+    "state": "Punjab",
+    "cities": ["Chandigarh", "Amritsar", "Ludhiana", "Patiala"]
+  },
+  {
+    "state": "Rajasthan",
+    "cities": ["Jaipur", "Udaipur", "Jodhpur", "Kota"]
+  },
+  {
+    "state": "Tamil Nadu",
+    "cities": ["Chennai", "Coimbatore", "Madurai", "Salem"]
+  },
+  {
+    "state": "Telangana",
+    "cities": ["Hyderabad", "Warangal", "Nizamabad"]
+  },
+  {
+    "state": "Uttar Pradesh",
+    "cities": ["Lucknow", "Kanpur", "Varanasi", "Agra", "Noida"]
+  },
+  {
+    "state": "Uttarakhand",
+    "cities": ["Dehradun", "Haridwar", "Nainital"]
+  },
+  {
+    "state": "West Bengal",
+    "cities": ["Kolkata", "Howrah", "Durgapur", "Asansol"]
+  }
+]

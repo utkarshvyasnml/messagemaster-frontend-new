@@ -1,0 +1,100 @@
+ /* ========== GENERAL STYLES ========== */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3f3f3;
+}
+
+/* ========== SIDEBAR ========== */
+aside {
+  background-color: #012841;
+  color: white;
+  width: 250px;
+  min-height: 100vh;
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+aside h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #f8f9fa;
+}
+
+aside ul {
+  list-style: none;
+  padding: 0;
+}
+
+aside li {
+  margin-bottom: 8px;
+}
+
+aside a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+aside a:hover {
+  background-color: #034f84;
+  text-decoration: none;
+}
+
+.active-link {
+  background-color: #034f84 !important;
+}
+
+/* ========== MAIN CONTENT ========== */
+main {
+  margin-left: 250px;
+  padding: 2rem;
+  background-color: #f3f3f3;
+  min-height: 100vh;
+  transition: all 0.3s ease-in-out;
+  /* ✅ FIX: Ensure the main content area fills the remaining width */
+  width: calc(100% - 250px);
+}
+
+/* ========== RESPONSIVE (MOBILE) ========== */
+@media screen and (max-width: 768px) {
+  aside {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+  }
+
+  main {
+    margin-left: 0;
+    /* ✅ FIX: Full width on mobile */
+    width: 100%;
+  }
+
+  aside h2 {
+    text-align: center;
+  }
+
+  aside ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  aside li {
+    margin: 4px;
+  }
+}
+
+/* This will ensure cancellation request rows are always highlighted */
+.table-row-cancellation-requested {
+  background-color: #fffbe6 !important; /* Use !important to override Bootstrap styles */
+  font-weight: bold; /* Make the text bold to stand out */
+}
