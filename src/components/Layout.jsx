@@ -63,7 +63,7 @@ const Layout = () => {
       { path: "/admin-announcements", label: "Manage Announcements", icon: "⚙️" },
       { path: "/announcements-history", label: "View Announcements", icon: "📢" },
       { path: "/backup", label: "Backup", icon: "🗄️" },
-      { path: "/storage", label: "Storage", icon: "💾" },
+      { path: "/storage", label: "Storage", icon: "💾" }, // ✅ NEW
     ],
     Reseller: [
       { path: "/reseller-dashboard", label: "Dashboard", icon: "🏠" },
@@ -109,7 +109,7 @@ const Layout = () => {
                     alt={branding.companyName} 
                     className="mb-4" 
                     style={{ maxHeight: '50px', width: 'auto' }} 
-                    onError={(e) => { e.target.style.display = 'none'; e.target.onerror = null; }} // Hide broken image
+                    onError={(e) => { e.target.style.display = 'none'; e.target.onerror = null; }}
                 />
             ) : (
                 <h2 className="mb-4">{branding.companyName}</h2>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, Button, Spinner, Alert, Form, Table } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 
 // Helper function to get authorization headers
 const getAuthHeaders = () => {
@@ -14,7 +13,6 @@ const StoragePage = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [storageData, setStorageData] = useState(null);
-  const navigate = useNavigate();
 
   // State for the cleanup form
   const [cleanupForm, setCleanupForm] = useState({
@@ -28,30 +26,14 @@ const StoragePage = () => {
     setError('');
     try {
       const config = getAuthHeaders();
-      // ✅ FIX: Ensure the request is not sent if the user is not logged in
-      if (!config.headers) {
-          setError("Authentication error. Please log in again.");
-          setLoading(false);
-          setTimeout(() => navigate("/login"), 2000);
-          return;
-      }
       const { data } = await axios.get('https://messagemaster-api-new.onrender.com/api/admin/storage-usage', config);
       setStorageData(data);
     } catch (err) {
-      // ✅ FIX: Add specific error handling for authentication issues
-      if (err.response && err.response.status === 401) {
-          setError("Your session has expired. Please log in again.");
-          localStorage.removeItem("token");
-          localStorage.removeItem("user");
-          setTimeout(() => navigate("/login"), 2000);
-      } else {
-         setError('Failed to load storage usage data.');
-      }
-      console.error("Error fetching storage data:", err);
+      setError('Failed to load storage usage data.');
     } finally {
       setLoading(false);
     }
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     fetchStorageUsage();
@@ -67,7 +49,13 @@ const StoragePage = () => {
         setError("Please select both a 'from' and 'to' date for cleanup.");
         return;
     }
-    if (window.confirm(`Are you sure you want to permanently delete all ${cleanupForm.dataType} between ${cleanupForm.fromDate} and ${cleanupForm.toDate}? This action cannot be undone.`)) {
+    
+    let confirmMessage = `Are you sure you want to permanently delete all ${cleanupForm.dataType} between ${cleanupForm.fromDate} and ${cleanupForm.toDate}? This action cannot be undone.`;
+    if (cleanupForm.dataType === 'users') {
+        confirmMessage += "\n\nWARNING: This will also delete all campaigns, tickets, and transactions associated with these users.";
+    }
+
+    if (window.confirm(confirmMessage)) {
         setLoading(true);
         setError('');
         setSuccess('');
@@ -171,20 +159,31 @@ const StoragePage = () => {
           <Card className="shadow-sm mb-4 border-danger">
             <Card.Header as="h5" className="bg-danger text-white">Data Cleanup</Card.Header>
             <Card.Body>
-              <Card.Text>
-                Permanently delete old campaign data to free up space.
-              </Card.Text>
               <Form onSubmit={handleCleanupSubmit}>
                 <Form.Group className="mb-3">
-                  <Form.Label>From Date</Form.Label>
-                  <Form.Control type="date" name="fromDate" value={cleanupForm.fromDate} onChange={handleCleanupChange} required />
+                    <Form.Label>Data Type to Delete</Form.Label>
+                    <Form.Select name="dataType" value={cleanupForm.dataType} onChange={handleCleanupChange}>
+                        <option value="campaigns">Campaigns</option>
+                        <option value="users">Users (excluding Admin)</option>
+                        <option value="transactions">Credit Transactions</option>
+                    </Form.Select>
                 </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label>To Date</Form.Label>
-                  <Form.Control type="date" name="toDate" value={cleanupForm.toDate} onChange={handleCleanupChange} required />
-                </Form.Group>
-                <Button variant="danger" type="submit" disabled={loading}>
-                  {loading ? <Spinner size="sm" /> : "Delete Campaign Data"}
+                <Row>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>From Date</Form.Label>
+                      <Form.Control type="date" name="fromDate" value={cleanupForm.fromDate} onChange={handleCleanupChange} required />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>To Date</Form.Label>
+                      <Form.Control type="date" name="toDate" value={cleanupForm.toDate} onChange={handleCleanupChange} required />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Button variant="danger" type="submit" disabled={loading} className="w-100">
+                  {loading ? <Spinner size="sm" /> : `Delete ${cleanupForm.dataType}`}
                 </Button>
               </Form>
             </Card.Body>
