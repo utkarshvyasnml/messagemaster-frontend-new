@@ -87,7 +87,7 @@ const StoragePage = () => {
         <div className="text-center"><Spinner animation="border" /></div>
       ) : storageData && (
         <Row>
-          <Col md={4}>
+          <Col md={6}>
             <Card className="text-center shadow-sm mb-4">
               <Card.Body>
                 <Card.Title>🗂️ File Storage</Card.Title>
@@ -100,7 +100,7 @@ const StoragePage = () => {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4}>
+          <Col md={6}>
             <Card className="text-center shadow-sm mb-4">
               <Card.Body>
                 <Card.Title>🗃️ Database Storage</Card.Title>
@@ -108,20 +108,7 @@ const StoragePage = () => {
                   {storageData.databaseStorage.megabytes} MB
                 </Card.Text>
                  <Card.Text className="text-muted">
-                  (User Data, Campaigns, etc.)
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}>
-             <Card className="text-center shadow-sm mb-4">
-              <Card.Body>
-                <Card.Title>📊 Total Storage</Card.Title>
-                <Card.Text className="fs-2 fw-bold">
-                  {(parseFloat(storageData.fileStorage.megabytes) + parseFloat(storageData.databaseStorage.megabytes)).toFixed(2)} MB
-                </Card.Text>
-                 <Card.Text className="text-muted">
-                  (Total Combined Usage)
+                  (Estimated Total Size)
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -132,14 +119,13 @@ const StoragePage = () => {
       <Row>
         <Col md={8}>
             <Card className="shadow-sm mb-4">
-                <Card.Header as="h5">Database Collection Sizes</Card.Header>
+                <Card.Header as="h5">Database Collection Breakdown</Card.Header>
                 <Card.Body>
                     <Table striped bordered hover responsive size="sm">
                         <thead>
                             <tr>
                                 <th>Collection Name</th>
                                 <th>Document Count</th>
-                                <th>Storage Size (MB)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -147,7 +133,6 @@ const StoragePage = () => {
                                 <tr key={col.name}>
                                     <td>{col.name}</td>
                                     <td>{col.count}</td>
-                                    <td>{col.sizeMegabytes}</td>
                                 </tr>
                             ))}
                         </tbody>
